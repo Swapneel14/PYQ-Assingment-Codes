@@ -1,4 +1,5 @@
 #include<stdio.h>//Compare 2 files//
+//most important part is fclose(fp),never forget to close a file//
 void main(){
     FILE *f;
     FILE *g;
