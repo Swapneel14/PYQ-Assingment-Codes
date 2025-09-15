@@ -172,6 +172,32 @@ void checkmerge(){
   node* ans=merge(d2,d1);
   print(ans);
 }
+node* sortList(node* head){
+    if(head == NULL || head->next == NULL) return head;
+
+    int swapped;
+    node *ptr1;
+    node *lptr = NULL;
+
+    do {
+        swapped = 0;
+        ptr1 = head;
+
+        while(ptr1->next != lptr){
+            if(ptr1->data < ptr1->next->data){ 
+                int temp = ptr1->data;
+                ptr1->data = ptr1->next->data;
+                ptr1->next->data = temp;
+                swapped = 1;
+            }
+            ptr1 = ptr1->next;
+        }
+        lptr = ptr1;
+    } while(swapped);
+
+    return head;
+}
+
 int main(){
   int choice;
    checkmerge();
@@ -224,6 +250,16 @@ int main(){
       n1=reversenode(n1);
       break;
     }
+   case 6:{
+    if(n1 == NULL){
+        printf("List is Empty, cannot sort\n");
+        break;
+    }
+    n1 = sortList(n1);
+    printf("List after sorting:\n");
+    print(n1);
+    break;
+   }  
 
         
    case 7:{
