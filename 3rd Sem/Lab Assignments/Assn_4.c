@@ -114,10 +114,67 @@ void updatenode(node* head){
     cur=cur->next;
  }
 }
+node* merge(node* n1,node* n2){
+  if(n1==NULL||n2==NULL){
+    return (n1==NULL)?n2:n1;
+}
+node* new=NULL;
+new=(n1->data>=n2->data)?n1:n2;
+node* ans=new;
+if(new==n1)n1=n1->next;
+else n2=n2->next;
+while(n1!=NULL&&n2!=NULL){
+  if(n1->data>=n2->data){
+    new->next=n1;
+    new=new->next;
+    n1=n1->next;
+  }
+  else{
+    new->next=n2;
+    new=new->next;
+    n2=n2->next;
+  }
+}
+node* rem=(n1==NULL)?n2:n1;
+while(rem!=NULL){
+  new->next=rem;
+  new=new->next;
+  rem=rem->next;
+}
+return ans;
 
+
+
+
+}
+void checkmerge(){
+  node* d1=NULL;
+  node* d2=NULL;
+  int n1,n2;
+  printf("Enter no. of elements for first list\n");
+  scanf("%d",&n1);
+  for(int i=1;i<=n1;i++){
+    int el;
+    printf("Enter element: ");
+    scanf("%d",&el);
+    d1=addsorted(d1,el);
+ }
+ printf("Enter no. of elements for sceond list\n");
+  scanf("%d",&n2);
+  for(int i=1;i<=n2;i++){
+    int el;
+    printf("Enter element: ");
+    scanf("%d",&el);
+    d2=addsorted(d2,el);
+ }
+  
+  
+  node* ans=merge(d2,d1);
+  print(ans);
+}
 int main(){
   int choice;
-   
+   checkmerge();
    node* n1=NULL;
    int run=1;
    while(run==1){
